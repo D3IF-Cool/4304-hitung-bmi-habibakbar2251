@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Hitung BMI</string>
+    <string name="bmi_intro_false" />
+    <string name="bmi_intro">BMI, atau Body Mass Index merupakan cara untuk  menentukan apakah berat badanmu ideal atau tidak. Cobalah sekarang!</string>
+    <string name="berat_badan">Berat badan (kg)</string>
+    <string name="beratEditText" />
+    <string name="tinggi_badan">Tinggi Badan (cm)</string>
+    <string name="tinggiEditText" />
+    <string name="jenis_kelamin">Jenis Kelamin</string>
+    <string name="priaRadioButton">Pria</string>
+    <string name="wanitaRadioButton">Wanita</string>
+    <string name="hitung">Hitung</string>
 </resources>
