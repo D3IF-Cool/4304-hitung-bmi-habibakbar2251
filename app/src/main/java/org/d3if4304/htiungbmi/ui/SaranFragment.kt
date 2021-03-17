@@ -19,8 +19,7 @@ class SaranFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         binding = FragmentSaranBinding.inflate(
             layoutInflater, container, false)
-        updateUI(KategoriBmi.KURUS)
-        updateUI(args.)
+        updateUI(args.kategori)
         return binding.root
     }
 
@@ -32,16 +31,23 @@ class SaranFragment : Fragment() {
                 actionBar?.title = getString(R.string.judul_kurus)
                 binding.imageView.setImageResource(R.drawable.kurus)
                 binding.textView.text = getString(R.string.saran_kurus)
+                binding.textView.text = getString(R.string.bmi_x)
+                binding.textView.text = getString(R.string.kategori_x)
+
             }
             KategoriBmi.IDEAL -> {
                 actionBar?.title = getString(R.string.judul_ideal)
                 binding.imageView.setImageResource(R.drawable.ideal)
                 binding.textView.text = getString(R.string.saran_ideal)
+                binding.textView.text = getString(R.string.bmi_x)
+                binding.textView.text = getString(R.string.kategori_x)
             }
             KategoriBmi.GEMUK -> {
                 actionBar?.title = getString(R.string.judul_gemuk)
                 binding.imageView.setImageResource(R.drawable.gemuk)
                 binding.textView.text = getString(R.string.saran_gemuk)
+                binding.textView.text = getString(R.string.bmi_x)
+                binding.textView.text = getString(R.string.kategori_x)
             }
         }
     }
