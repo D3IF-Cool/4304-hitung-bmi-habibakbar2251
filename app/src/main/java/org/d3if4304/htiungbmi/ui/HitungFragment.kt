@@ -1,4 +1,5 @@
 package org.d3if4304.htiungbmi.ui
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -8,20 +9,28 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import org.d3if4304.htiungbmi.R
+import org.d3if4304.htiungbmi.data.KategoriBmi
 import org.d3if4304.htiungbmi.databinding.FragmentHitungBinding
+
 
 class HitungFragment : Fragment() {
 
     private lateinit var binding: FragmentHitungBinding
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    private lateinit var kategoriBmi: KategoriBmi
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = FragmentHitungBinding.inflate(
-            layoutInflater, container, false)
+            layoutInflater, container, false
+        )
         binding.button.setOnClickListener { hitungBmi() }
         binding.button3.setOnClickListener { resetButton() }
         binding.saranButton.setOnClickListener { view: View ->
             view.findNavController().navigate(
-                R.id.action_hitungFragment_to_saranFragment
+                HitungFragmentDirections.
+                    actionHitungFragmentToSaranFragment(kategoriBmi)
             )
         }
 
@@ -66,18 +75,23 @@ class HitungFragment : Fragment() {
         binding.saranButton.visibility - View.VISIBLE
     }
     private fun getKategori(bmi: Float, isMale: Boolean): String {
-        val stringRes = if (isMale) {
+        kategoriBmi = if (isMale) {
             when {
-                bmi < 20.5 -> R.string.kurus
-                bmi >= 27.0 -> R.string.gemuk
-                else -> R.string.ideal
+                bmi < 20.5 -> KategoriBmi.KURUS
+                bmi >= 27.0 -> KategoriBmi.GEMUK
+                else -> KategoriBmi.IDEAL
             }
         } else {
             when {
-                bmi < 18.5 -> R.string.kurus
-                bmi >= 25.0 -> R.string.gemuk
-                else -> R.string.ideal
+                bmi < 18.5 -> KategoriBmi.KURUS
+                bmi >= 25.0 -> KategoriBmi.GEMUK
+                else -> KategoriBmi.IDEAL
             }
+        }
+        val stringRes = when (kategoriBmi) {
+            KategoriBmi.KURUS -> R.string.kurus
+            KategoriBmi.IDEAL -> R.string.ideal
+            KategoriBmi.GEMUK -> R.string.gemuk
         }
         return getString(stringRes)
     }
