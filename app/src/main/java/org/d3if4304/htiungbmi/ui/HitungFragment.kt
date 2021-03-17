@@ -48,6 +48,7 @@ class HitungFragment : Fragment() {
                     actionHitungFragmentToSaranFragment(kategoriBmi)
             )
         }
+        binding.shareButton.setOnClickListener {shareData()}
         setHasOptionsMenu(true)
         return binding.root
     }
@@ -87,8 +88,33 @@ class HitungFragment : Fragment() {
 
         binding.bmiTextView.text = getString(R.string.bmi_x, bmi)
         binding.kategoriTextView.text = getString(R.string.kategori_x, kategori)
-        binding.saranButton.visibility - View.VISIBLE
+        binding.buttonGroup.visibility - View.VISIBLE
     }
+
+    private fun shareData() {
+        val selectedID = binding.radioGroup.checkedRadioButtonId
+        val Gender = if (selectedID == R.id.priaRadioButton)
+            getString(R.string.priaRadioButton)
+        else
+            getString(R.string.wanitaRadioButton)
+
+        val Message = getString(R.string.bagikan_template,
+                binding.beratEditText.text,
+                binding.tinggiEditText.text, Gender,
+                binding.bmiTextView.text,
+                binding.kategoriTextView.text
+        )
+
+        val Share_Intent = Intent(Intent.ACTION_SEND)
+        Share_Intent.setType("text/plain").putExtra(Intent.EXTRA_TEXT,Message)
+        if(Share_Intent.resolveActivity(
+                        requireActivity().packageManager) != null)
+        {
+            startActivity(Share_Intent)
+        }
+
+    }
+
     private fun getKategori(bmi: Float, isMale: Boolean): String {
         kategoriBmi = if (isMale) {
             when {
