@@ -2,12 +2,12 @@ package org.d3if4304.htiungbmi.ui
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import org.d3if4304.htiungbmi.R
 import org.d3if4304.htiungbmi.data.KategoriBmi
 import org.d3if4304.htiungbmi.databinding.FragmentHitungBinding
@@ -17,6 +17,21 @@ class HitungFragment : Fragment() {
 
     private lateinit var binding: FragmentHitungBinding
     private lateinit var kategoriBmi: KategoriBmi
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.option_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.menu_about) {
+            findNavController().navigate(
+                    R.id.action_hitungFragment_to_aboutFragment)
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +48,7 @@ class HitungFragment : Fragment() {
                     actionHitungFragmentToSaranFragment(kategoriBmi)
             )
         }
-
+        setHasOptionsMenu(true)
         return binding.root
     }
 
