@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, R.string.tinggi_invalid, Toast.LENGTH_LONG).show()
             return
         }
-        val tinggiCm = tinggi.toFloat() / 100
+        val tinggiCm = tinggi.toFloat()/100
 
         val selectedId = binding.radioGroup.checkedRadioButtonId
         if (selectedId == -1) {
