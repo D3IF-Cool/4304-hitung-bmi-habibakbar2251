@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
 import org.d3if4304.week10.databinding.FragmentRiwayatBinding
 import org.d3if4304.week10.db.BMIDB
 
@@ -19,11 +21,21 @@ class RiwayatFragment: Fragment() {
     }
 
     private lateinit var binding: FragmentRiwayatBinding
+    private lateinit var myAdapter: RiwayatAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = FragmentRiwayatBinding.inflate(layoutInflater,
             container, false)
+
+        myAdapter = RiwayatAdapter()
+        with(binding.recyclerView) {
+            addItemDecoration(
+                DividerItemDecoration(context,
+                RecyclerView.VERTICAL))
+            adapter = myAdapter
+            setHasFixedSize(true)
+        }
         return binding.root
     }
 
@@ -31,7 +43,9 @@ class RiwayatFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.data.observe(viewLifecycleOwner, {
-            Log.d("HistoriFragment", "Jumlah data: ${it.size}")
+            binding.emptyView.visibility = if (it.isEmpty())
+                View.VISIBLE else View.GONE
+            myAdapter.updateData(it)
         })
 
     }

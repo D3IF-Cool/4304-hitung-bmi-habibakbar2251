@@ -36,6 +36,8 @@ Mobpro 1. Temukan kodenya di https://github.com/D3IF-Cool/4304-hitung-bmi-habiba
 cm\nJenis kelamin: %3$s\n\n%4$s\n%5$s</string>
     <string name="belum_ada_data">Belum Ada Data</string>
     <string name="riwayat">Riwayat</string>
+    <string name="berat_x">BB: %1$.1f</string>
+    <string name="tinggi_x">TB: %1$.1f</string>
 
     <dimen name="horizontal_margin">16dp</dimen>
 </resources>
