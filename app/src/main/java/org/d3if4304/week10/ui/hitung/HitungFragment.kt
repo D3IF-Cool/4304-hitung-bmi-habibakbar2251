@@ -55,12 +55,6 @@ class HitungFragment : Fragment() {
                 getKategori(it.kategori))
             binding.buttonGroup.visibility = View.VISIBLE
         })
-
-        viewModel.dataBMI.observe(viewLifecycleOwner, {
-            if (it == null) return@observe
-            Log.d("HitungFragment","Data Tersimpan. ID = ${it.id}")
-        })
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

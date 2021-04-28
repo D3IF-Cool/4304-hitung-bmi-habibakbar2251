@@ -1,18 +1,21 @@
-package org.d3if4304.week10.ui.hitung
+package org.d3if4304.week10.ui.riwayat
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import org.d3if4304.week10.db.BMIDAO
-import java.lang.IllegalArgumentException
 
-class HitungViewModelFactory(
+class RiwayatViewModelFactory(
+
     private val db: BMIDAO
+
 ) : ViewModelProvider.Factory {
+
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(HitungViewModel::class.java)) {
-            return HitungViewModel(db) as T
+        if(modelClass.isAssignableFrom(RiwayatViewModel::class.java)) {
+            return RiwayatViewModel(db) as T
         }
-        throw IllegalArgumentException("Unknown ViewModel class")
+        throw IllegalArgumentException("Unknown ViewModel Class")
     }
+
 }

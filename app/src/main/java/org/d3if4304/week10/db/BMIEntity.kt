@@ -11,5 +11,4 @@ data class BMIEntity(
     var berat: Float,
     var tinggi: Float,
     var isMale: Boolean
-
 )

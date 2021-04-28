@@ -10,9 +10,9 @@ import kotlinx.coroutines.withContext
 import org.d3if4304.week10.data.HasilBmi
 import org.d3if4304.week10.data.KategoriBmi
 import org.d3if4304.week10.db.BMIEntity
-import org.d3if4304.week10.db.BmiDao
+import org.d3if4304.week10.db.BMIDAO
 
-class HitungViewModel(private val db: BmiDao) : ViewModel() {
+class HitungViewModel(private val db: BMIDAO) : ViewModel() {
 
 
     // Hasil BMI bisa null jika pengguna belum menghitung BMI
@@ -23,7 +23,6 @@ class HitungViewModel(private val db: BmiDao) : ViewModel() {
 
     // Variabel ini sudah berupa LiveData (tidak mutable),
     // sehingga tidak perlu dijadikan private
-    val dataBMI = db.getLastBmi()
 
     fun hitungBmi(berat: String, tinggi: String, isMale: Boolean) {
         val tinggiCm = tinggi.toFloat() / 100
