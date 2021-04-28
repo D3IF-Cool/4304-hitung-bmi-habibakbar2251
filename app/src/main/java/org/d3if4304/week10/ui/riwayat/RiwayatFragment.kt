@@ -2,13 +2,13 @@ package org.d3if4304.week10.ui.riwayat
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.d3if4304.week10.R
 import org.d3if4304.week10.databinding.FragmentRiwayatBinding
 import org.d3if4304.week10.db.BMIDB
 
@@ -36,6 +36,7 @@ class RiwayatFragment: Fragment() {
             adapter = myAdapter
             setHasFixedSize(true)
         }
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -50,4 +51,26 @@ class RiwayatFragment: Fragment() {
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.riwayat_menu, menu)
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.menu_hapus) {
+            hapusData()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+    private fun hapusData() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setMessage(R.string.konfirmasi_hapus)
+            .setPositiveButton(getString(R.string.hapus_data)) { _, _ ->
+                viewModel.deleteData()
+            }
+            .setNegativeButton(getString(R.string.batal)) { dialog, _ ->
+                dialog.cancel()
+            }
+            .show()
+    }
 }

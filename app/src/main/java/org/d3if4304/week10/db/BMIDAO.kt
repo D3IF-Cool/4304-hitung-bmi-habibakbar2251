@@ -11,4 +11,6 @@ interface BMIDAO {
     fun insert(BMI : BMIEntity)
     @Query("SELECT * FROM BMI ORDER BY id DESC")
     fun getLastBmi(): LiveData<List<BMIEntity>>
+    @Query("DELETE FROM BMI")
+    fun clearData()
 }
