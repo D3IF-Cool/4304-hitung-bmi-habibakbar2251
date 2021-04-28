@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_hitungFragment_to_aboutFragment"
             app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_hitungFragment_to_riwayatFragment"
+            app:destination="@id/riwayatFragment" />
     </fragment>
     <fragment
         android:id="@+id/saranFragment"
@@ -33,4 +36,9 @@
         android:name="org.d3if4304.week10.ui.AboutFragment"
         android:label="AboutFragment"
         tools:layout="@layout/fragment_about"/>
+    <fragment
+        android:id="@+id/riwayatFragment"
+        android:name="org.d3if4304.week10.ui.riwayat.RiwayatFragment"
+        android:label="RiwayatFragment"
+        tools:layout="@layout/fragment_riwayat"/>
 </navigation>

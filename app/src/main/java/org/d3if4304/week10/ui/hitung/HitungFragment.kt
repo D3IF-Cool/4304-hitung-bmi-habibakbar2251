@@ -14,12 +14,12 @@ import androidx.navigation.fragment.findNavController
 import org.d3if4304.week10.R
 import org.d3if4304.week10.data.KategoriBmi
 import org.d3if4304.week10.databinding.FragmentHitungBinding
-import org.d3if4304.week10.db.BmiDb
+import org.d3if4304.week10.db.BMIDB
 
 class HitungFragment : Fragment() {
 
     private val viewModel: HitungViewModel by lazy {
-        val db = BmiDb.getInstance(requireContext())
+        val db = BMIDB.getInstance(requireContext())
         val factory = HitungViewModelFactory(db.dao)
         ViewModelProvider(this, factory).get(HitungViewModel::class.java)
     }
@@ -66,13 +66,21 @@ class HitungFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.option_menu, menu)
-    } override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menu_about) {
-            findNavController().navigate(
-                R.id.action_hitungFragment_to_aboutFragment)
-            return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+            when (item.itemId) {
+                R.id.menu_histori -> {
+                    findNavController().navigate(
+                        R.id.action_hitungFragment_to_riwayatFragment)
+                    return true
+                }
+                R.id.menu_about -> {
+                    findNavController().navigate(
+                        R.id.action_hitungFragment_to_aboutFragment)
+                }
         }
-        return super.onOptionsItemSelected(item)
+                return super.onOptionsItemSelected(item)
     }
 
 

@@ -6,17 +6,17 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(entities = [BMIEntity::class], version = 1, exportSchema = false)
-abstract class BmiDb : RoomDatabase() {
+abstract class BMIDB : RoomDatabase() {
     abstract val dao: BmiDao
     companion object {
         @Volatile
-        private var INSTANCE: BmiDb? = null
-        fun getInstance(context: Context): BmiDb {
+        private var INSTANCE: BMIDB? = null
+        fun getInstance(context: Context): BMIDB {
             synchronized(this) {
                 var instance = INSTANCE
                 if (instance == null) { instance = Room.databaseBuilder(
                     context.applicationContext,
-                    BmiDb::class.java,
+                    BMIDB::class.java,
                     "bmi.db"
                 )
                     .fallbackToDestructiveMigration()
